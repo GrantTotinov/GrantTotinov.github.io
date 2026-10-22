@@ -6,6 +6,7 @@ export default {
     posts: "Posts",
     tags: "Tags",
     about: "About",
+    contributions: "Contributions",
     archives: "Archives",
     search: "Search",
   },

@@ -7,11 +7,19 @@ I'm Grant Totinov, a .NET developer from Bulgaria. I hold an M.Eng. and spend a 
 
 Merged so far:
 
-- [#68834](https://github.com/dotnet/aspnetcore/pull/68834): validate the COSE `alg`/`crv` combination when decoding a passkey public key
-- [#67539](https://github.com/dotnet/aspnetcore/pull/67539): `SignInManager` returns `SignInResult.Failed` for an expired passkey session challenge
-- [#67742](https://github.com/dotnet/aspnetcore/pull/67742): authorization metadata guard consistency
-- [#66772](https://github.com/dotnet/aspnetcore/pull/66772): documenting antiforgery HTTP method limitations
-- [#66747](https://github.com/dotnet/aspnetcore/pull/66747): clearer default Identity emails for people who didn't request them
+- **ASP.NET Core**
+  - [#68834](https://github.com/dotnet/aspnetcore/pull/68834): validate the COSE `alg`/`crv` combination when decoding a passkey public key
+  - [#67539](https://github.com/dotnet/aspnetcore/pull/67539): `SignInManager` returns `SignInResult.Failed` for an expired passkey session challenge
+  - [#67742](https://github.com/dotnet/aspnetcore/pull/67742): authorization metadata guard consistency
+  - [#66772](https://github.com/dotnet/aspnetcore/pull/66772) and [AspNetCore.Docs#37224](https://github.com/dotnet/AspNetCore.Docs/pull/37224): documenting antiforgery HTTP method limitations
+  - [#66747](https://github.com/dotnet/aspnetcore/pull/66747): clearer default Identity emails for people who didn't request them
+- **Spectre.Console**
+  - [#2101](https://github.com/spectreconsole/spectre.console/pull/2101): `Align` measurement respects an explicit width
+  - [#2118](https://github.com/spectreconsole/spectre.console/pull/2118): escape every interpolated markup argument, not just strings
+- **Tiptap**
+  - [#7832](https://github.com/ueberdosis/tiptap/pull/7832): forward `getReferencedVirtualElement` in the React drag handle
+
+Each of these has a write-up under [Contributions](/contributions/).
 
 ## What this blog is
 

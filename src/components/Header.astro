@@ -1,4 +1,5 @@
 ---
+import { getCollection } from "astro:content";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import IconUnderline from "@/assets/icons/IconUnderline.svg";
 import IconMenuDeep from "@/assets/icons/IconMenuDeep.svg";
@@ -11,6 +12,8 @@ import LinkButton from "./LinkButton.astro";
 import { stripBase, stripLocale } from "@/utils/withBase";
 import { useTranslations } from "@/i18n";
 import config from "@/config";
+import { getActiveContributions } from "@/data/contributions";
+import { getSortedPosts } from "@/utils/getSortedPosts";
 
 const { site, features } = config;
 
@@ -26,6 +29,10 @@ const pathWithoutTrailingSlash =
     : relativePath;
 
 const currentPath = stripLocale(pathWithoutTrailingSlash, locale);
+
+const contributions = getActiveContributions(
+  getSortedPosts(await getCollection("posts"))
+);
 
 const isActive = (path: string) => {
   const currentPathArray = currentPath.split("/").filter(p => p.trim());
@@ -82,6 +89,59 @@ const isActive = (path: string) => {
             {t.nav.posts}
           </a>
         </li>
+        {
+          contributions.length > 0 && (
+            <li class="relative col-span-2">
+              <details class="contributions-menu group">
+                <summary class="hover:text-accent flex cursor-pointer list-none items-center justify-center gap-1 px-4 py-3 font-medium sm:px-2 sm:py-1 [&::-webkit-details-marker]:hidden">
+                  <span
+                    class:list={{ "active-nav": isActive("/contributions") }}
+                  >
+                    {t.nav.contributions}
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    class="text-xs transition-transform group-open:rotate-180"
+                  >
+                    ▾
+                  </span>
+                </summary>
+                <ul class="border-border bg-background z-50 mt-1 min-w-52 rounded-md border p-1 sm:absolute sm:end-0 sm:top-full sm:mt-2 sm:shadow-lg">
+                  {contributions.map(({ key, label, github }) => (
+                    <li>
+                      <a
+                        href={getRelativeLocaleUrl(
+                          locale,
+                          `contributions/${key}`
+                        )}
+                        class:list={[
+                          "hover:bg-muted hover:text-accent block rounded px-3 py-2 text-start",
+                          {
+                            "text-accent":
+                              currentPath === `/contributions/${key}`,
+                          },
+                        ]}
+                      >
+                        <span class="block font-medium">{label}</span>
+                        <span class="text-muted-foreground block text-xs">
+                          {github}
+                        </span>
+                      </a>
+                    </li>
+                  ))}
+                  <li class="border-border mt-1 border-t pt-1">
+                    <a
+                      href={getRelativeLocaleUrl(locale, "contributions")}
+                      class="hover:bg-muted hover:text-accent block rounded px-3 py-2 text-start text-sm"
+                    >
+                      All contributions
+                    </a>
+                  </li>
+                </ul>
+              </details>
+            </li>
+          )
+        }
         <li class="col-span-2">
           <a
             href={getRelativeLocaleUrl(locale, "tags")}
@@ -217,6 +277,24 @@ const isActive = (path: string) => {
       }
     });
   }
+
+  // Close the Contributions dropdown on outside click, Escape or navigation.
+  function closeContributionsMenu(except?: Element | null) {
+    document
+      .querySelectorAll<HTMLDetailsElement>("details.contributions-menu[open]")
+      .forEach(menu => {
+        if (menu !== except) menu.open = false;
+      });
+  }
+  document.addEventListener("click", e => {
+    closeContributionsMenu(
+      (e.target as Element).closest("details.contributions-menu")
+    );
+  });
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape") closeContributionsMenu();
+  });
+  document.addEventListener("astro:after-swap", () => closeContributionsMenu());
 
   toggleNav();
   document.addEventListener("astro:after-swap", toggleNav);

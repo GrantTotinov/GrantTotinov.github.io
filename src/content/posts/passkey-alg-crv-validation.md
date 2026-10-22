@@ -2,6 +2,7 @@
 title: "ES256 doesn't mean P-256 (unless you check): fixing passkey key validation in ASP.NET Core"
 description: "A passkey public key carries an algorithm and a curve, and WebAuthn says they have to agree. ASP.NET Core Identity didn't check that. Notes on PR #68834: where the gap comes from, what a mismatched key actually does in .NET, and the fix."
 pubDatetime: 2026-10-21T01:00:00Z
+repo: aspnetcore
 tags:
   - aspnetcore
   - passkeys

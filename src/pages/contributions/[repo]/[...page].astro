@@ -1,0 +1,60 @@
+---
+import { getCollection } from "astro:content";
+import type { GetStaticPathsOptions } from "astro";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Main from "@/components/Main.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import Card from "@/components/Card.astro";
+import Footer from "@/components/Footer.astro";
+import Pagination from "@/components/Pagination.astro";
+import { getActiveContributions } from "@/data/contributions";
+import { getSortedPosts } from "@/utils/getSortedPosts";
+import config from "@/config";
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const posts = getSortedPosts(
+    await getCollection("posts", ({ data }) => !data.draft)
+  );
+
+  return getActiveContributions(posts).flatMap(project =>
+    paginate(
+      posts.filter(({ data }) => data.repo === project.key),
+      {
+        params: { repo: project.key },
+        props: { project },
+        pageSize: config.posts.perPage,
+      }
+    )
+  );
+}
+
+const { page, project } = Astro.props;
+---
+
+<Layout title={`${project.label} contributions | ${config.site.title}`}>
+  <Header />
+
+  <Breadcrumb />
+
+  <Main
+    pageTitle={project.label}
+    pageDesc={`${project.blurb} Write-ups of my merged pull requests to ${project.github}.`}
+  >
+    <p class="-mt-4 mb-6 text-sm">
+      <a
+        href={`https://github.com/${project.github}/pulls?q=is%3Apr+author%3AGrantTotinov`}
+        class="hover:text-accent underline decoration-dashed underline-offset-4"
+      >
+        All my PRs to {project.github} on GitHub
+      </a>
+    </p>
+    <ul>
+      {page.data.map(data => <Card {...data} />)}
+    </ul>
+  </Main>
+
+  <Pagination {page} />
+
+  <Footer noMarginTop={page.lastPage > 1} />
+</Layout>

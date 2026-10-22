@@ -1,5 +1,6 @@
 ---
 import { type CollectionEntry, getCollection, render } from "astro:content";
+import { getRelativeLocaleUrl } from "astro:i18n";
 import PostLayout from "@/layouts/PostLayout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
@@ -15,6 +16,7 @@ import BackButton from "./_components/BackButton.astro";
 import BackToTopButton from "./_components/BackToTopButton.astro";
 import AdjacentPostNav from "./_components/AdjacentPostNav.astro";
 import config from "@/config";
+import { CONTRIBUTIONS } from "@/data/contributions";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
@@ -71,7 +73,10 @@ const {
   timezone,
   tags,
   hideEditPost,
+  repo,
 } = post.data;
+
+const project = repo && { key: repo, ...CONTRIBUTIONS[repo] };
 
 const { Content } = await render(post);
 
@@ -133,6 +138,21 @@ const ogImage = ogImageUrl
       </span>
       <EditPost {hideEditPost} {post} class="max-sm:hidden" />
     </div>
+
+    {
+      project && (
+        <p class="text-muted-foreground mb-2 text-sm">
+          Contribution to{" "}
+          <a
+            href={getRelativeLocaleUrl(locale, `contributions/${project.key}`)}
+            class="hover:text-accent underline decoration-dashed underline-offset-4"
+          >
+            {project.label}
+          </a>{" "}
+          ({project.github})
+        </p>
+      )
+    }
 
     <article
       id="article"
