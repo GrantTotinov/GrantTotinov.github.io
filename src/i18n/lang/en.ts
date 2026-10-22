@@ -7,6 +7,7 @@ export default {
     tags: "Tags",
     about: "About",
     contributions: "Contributions",
+    projects: "Projects",
     archives: "Archives",
     search: "Search",
   },

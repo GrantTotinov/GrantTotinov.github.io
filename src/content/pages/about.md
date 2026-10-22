@@ -3,7 +3,9 @@ title: "About"
 description: "Who I am and what this blog is for."
 ---
 
-I'm Grant Totinov, a .NET developer from Bulgaria. I hold an M.Eng. and spend a good part of my free time contributing to [ASP.NET Core](https://github.com/dotnet/aspnetcore), mostly in Identity and security.
+I'm Grant Totinov, a software engineer from Bulgaria with a Master's degree in Computer Engineering. I'm a member of the [.NET Foundation](https://dotnetfoundation.org) and a Microsoft Q&A Community Champion, and I spend a good part of my free time contributing to open source.
+
+I also build [AI Exporter](/projects/), a free browser extension that saves AI chats from ChatGPT, Claude, Gemini and twelve other sites as PDF, Word, Markdown and more.
 
 Merged so far:
 

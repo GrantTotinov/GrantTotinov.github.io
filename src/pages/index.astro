@@ -9,6 +9,7 @@ import Footer from "@/components/Footer.astro";
 import Socials from "@/components/Socials.astro";
 import Card from "@/components/Card.astro";
 import LinkButton from "@/components/LinkButton.astro";
+import AIExporterCard from "@/components/AIExporterCard.astro";
 import { getSortedPosts } from "@/utils/getSortedPosts";
 import { useTranslations } from "@/i18n";
 import config from "@/config";
@@ -53,10 +54,14 @@ const homePath = getRelativeLocaleUrl(locale, "");
       </a>
 
       <p>
-        I'm a .NET developer. Most of my open source work is in ASP.NET Core
-        Identity: passkeys, two-factor authentication and the security checks
-        around them. This is where I write up what I learn while fixing things
-        there, with links to the actual PRs and specs.
+        I'm Grant Totinov, a software engineer with a Master's degree in
+        Computer Engineering. I'm a member of the .NET Foundation and a
+        Microsoft Q&amp;A Community Champion, and I contribute to open source
+        projects such as ASP.NET Core, Spectre.Console and Tiptap.
+      </p>
+      <p class="mt-2">
+        This blog is where I write up what I learn along the way, with links to
+        the pull requests and specs behind each post.
       </p>
       {
         socials.length > 0 && (
@@ -68,6 +73,11 @@ const homePath = getRelativeLocaleUrl(locale, "");
           </div>
         )
       }
+    </section>
+
+    <section id="projects" class="border-border border-b pt-12 pb-6">
+      <h2 class="mb-4 text-2xl font-semibold tracking-wide">My project</h2>
+      <AIExporterCard />
     </section>
 
     {

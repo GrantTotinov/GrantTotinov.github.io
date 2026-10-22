@@ -4,7 +4,7 @@ export default defineAstroPaperConfig({
   site: {
     url: "https://granttotinov.github.io/",
     title: "Grant Totinov",
-    description: "Notes on ASP.NET Core, Identity, passkeys and open source.",
+    description: "Notes on .NET, open source and the things I build.",
     author: "Grant Totinov",
     profile: "https://github.com/GrantTotinov",
     ogImage: "default-og.jpg",
@@ -20,7 +20,7 @@ export default defineAstroPaperConfig({
   features: {
     lightAndDarkMode: true,
     dynamicOgImage: true,
-    showArchives: true,
+    showArchives: false,
     showBackButton: true,
     editPost: {
       enabled: true,
