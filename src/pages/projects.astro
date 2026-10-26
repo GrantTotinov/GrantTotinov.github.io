@@ -4,92 +4,171 @@ import Header from "@/components/Header.astro";
 import Main from "@/components/Main.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import Footer from "@/components/Footer.astro";
-import AIExporterCard from "@/components/AIExporterCard.astro";
+import ProjectCard from "@/components/ProjectCard.astro";
+import { PROJECTS } from "@/data/projects";
 import config from "@/config";
+
+const prose =
+  "app-prose mt-8 max-w-none [&_h3]:mt-6 [&_h3]:text-lg [&_h3]:font-semibold [&_li]:my-1 [&_ul]:list-disc [&_ul]:ps-6";
+const link = "hover:text-accent underline decoration-dashed underline-offset-4";
 ---
 
-<Layout title={`Projects | ${config.site.title}`}>
+<Layout title={`Open Source Projects | ${config.site.title}`}>
   <Header />
 
   <Breadcrumb />
 
-  <Main pageTitle="Projects" pageDesc="Things I build and maintain myself.">
-    <AIExporterCard headingLevel="h2" />
+  <Main
+    pageTitle="Open Source Projects"
+    pageDesc="Things I build and maintain myself."
+  >
+    <section id="ai-exporter">
+      <ProjectCard project={PROJECTS.aiExporter} headingLevel="h2" />
 
-    <section
-      class="app-prose mt-8 max-w-none [&_h3]:mt-6 [&_h3]:text-lg [&_h3]:font-semibold [&_li]:my-1 [&_ul]:list-disc [&_ul]:ps-6"
-    >
-      <h3>What it does</h3>
-      <ul>
-        <li>
-          Works on fifteen AI chat sites: ChatGPT, Claude, Gemini, DeepSeek,
-          Grok, Perplexity, Microsoft Copilot, Mistral Le Chat, Meta AI, Kimi,
-          Doubao, Qwen, Qianwen, Tencent Yuanbao and Z.ai.
-        </li>
-        <li>
-          Exports to nine formats: PDF, Word, a self-contained web page, one
-          long image, Markdown, plain text, JSON, CSV and Excel.
-        </li>
-        <li>
-          Saves many chats at once into a ZIP, and can back up new and changed
-          chats every hour, day or week to your Downloads folder or a private
-          GitHub repository.
-        </li>
-        <li>
-          Saves straight to GitHub or Notion, opens a chat in Google Docs,
-          continues it in another AI, and gives a ready citation in APA, MLA and
-          Chicago style.
-        </li>
-        <li>Interface in thirteen languages.</li>
-      </ul>
+      <div class={prose}>
+        <h3>What it does</h3>
+        <ul>
+          <li>
+            Works on fifteen AI chat sites: ChatGPT, Claude, Gemini, DeepSeek,
+            Grok, Perplexity, Microsoft Copilot, Mistral Le Chat, Meta AI, Kimi,
+            Doubao, Qwen, Qianwen, Tencent Yuanbao and Z.ai.
+          </li>
+          <li>
+            Exports to nine formats: PDF, Word, a self-contained web page, one
+            long image, Markdown, plain text, JSON, CSV and Excel.
+          </li>
+          <li>
+            Saves many chats at once into a ZIP, and can back up new and changed
+            chats every hour, day or week to your Downloads folder or a private
+            GitHub repository.
+          </li>
+          <li>
+            Saves straight to GitHub or Notion, opens a chat in Google Docs,
+            continues it in another AI, and gives a ready citation in APA, MLA
+            and Chicago style.
+          </li>
+          <li>Interface in thirteen languages.</li>
+        </ul>
 
-      <h3>How it's built</h3>
-      <ul>
-        <li>
-          It reads each conversation through the same API the chat site's own
-          web app uses, instead of scrolling the page and scraping whatever is
-          rendered. That's why long chats come out complete and in the right
-          order, and why regenerated replies and edited messages follow the
-          branch you're actually looking at. Mistral Le Chat and Meta AI have no
-          such API, so on those two it reads the page.
-        </li>
-        <li>
-          PDFs embed fonts for Latin, Cyrillic, Greek, Hebrew, Arabic, Chinese,
-          Japanese, Korean, the Indian scripts and more. Complex scripts are
-          shaped with HarfBuzz, right-to-left text stays right-to-left, and
-          formulas are typeset. In Word they become real, editable equations.
-        </li>
-        <li>
-          Everything runs locally. There is no AI Exporter server, no account
-          and no analytics. The extension only talks to the chat site you're
-          exporting from, and to GitHub or Notion if you use those features.
-        </li>
-        <li>
-          Written in TypeScript. The source is on GitHub and free for personal
-          and other noncommercial use.
-        </li>
-      </ul>
+        <h3>How it's built</h3>
+        <ul>
+          <li>
+            It reads each conversation through the same API the chat site's own
+            web app uses, instead of scrolling the page and scraping whatever is
+            rendered. That's why long chats come out complete and in the right
+            order, and why regenerated replies and edited messages follow the
+            branch you're actually looking at. Mistral Le Chat and Meta AI have
+            no such API, so on those two it reads the page.
+          </li>
+          <li>
+            PDFs embed fonts for Latin, Cyrillic, Greek, Hebrew, Arabic,
+            Chinese, Japanese, Korean, the Indian scripts and more. Complex
+            scripts are shaped with HarfBuzz, right-to-left text stays
+            right-to-left, and formulas are typeset. In Word they become real,
+            editable equations.
+          </li>
+          <li>
+            Everything runs locally. There is no AI Exporter server, no account
+            and no analytics. The extension only talks to the chat site you're
+            exporting from, and to GitHub or Notion if you use those features.
+          </li>
+          <li>
+            Written in TypeScript. The source is on GitHub and free for personal
+            and other noncommercial use.
+          </li>
+        </ul>
 
-      <h3>Installing it</h3>
-      <ul>
-        <li>
-          <strong>Chrome and Edge:</strong> from the{" "}
-          <a
-            href="https://chromewebstore.google.com/detail/objkcakdcilfaphifjfcgfamlnnbinjc"
-            class="hover:text-accent underline decoration-dashed underline-offset-4"
-            >Chrome Web Store</a
-          >. Edge installs Chrome extensions after you allow extensions from
-          other stores.
-        </li>
-        <li>
-          <strong>Firefox 140 or newer:</strong> build it from{" "}
-          <a
-            href="https://github.com/GrantTotinov/AIExporter#from-source-chrome-edge-or-firefox"
-            class="hover:text-accent underline decoration-dashed underline-offset-4"
-            >the source</a
-          >.
-        </li>
-      </ul>
+        <h3>Installing it</h3>
+        <ul>
+          <li>
+            <strong>Chrome and Edge:</strong> from the{" "}
+            <a
+              href="https://chromewebstore.google.com/detail/objkcakdcilfaphifjfcgfamlnnbinjc"
+              class={link}>Chrome Web Store</a
+            >. Edge installs Chrome extensions after you allow extensions from
+            other stores.
+          </li>
+          <li>
+            <strong>Firefox 140 or newer:</strong> build it from{" "}
+            <a
+              href="https://github.com/GrantTotinov/AIExporter#from-source-chrome-edge-or-firefox"
+              class={link}>the source</a
+            >.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="pixelforge" class="mt-12">
+      <ProjectCard project={PROJECTS.pixelForge} headingLevel="h2" />
+
+      <div class={prose}>
+        <h3>What it does</h3>
+        <ul>
+          <li>
+            Reads PNG, JPEG, WebP, GIF (first frame), BMP, ICO and WBMP, and
+            writes JPEG, PNG and WebP, lossy or lossless.
+          </li>
+          <li>
+            Fixes orientation from EXIF, resizes with crop, pad, max, min and
+            stretch modes, and crops, rotates, flips and converts to grayscale.
+          </li>
+          <li>
+            Uses the same <code>Load</code>, <code>Mutate</code> and
+            <code>Save</code> calls as ImageSharp. For most upload and thumbnail code,
+            moving over means changing the <code>using</code> lines and the encoder
+            calls. The{" "}
+            <a
+              href="https://github.com/GrantTotinov/PixelForge/blob/main/docs/migrating-from-imagesharp.md"
+              class={link}>migration guide</a
+            > has the full mapping.
+          </li>
+        </ul>
+
+        <h3>How it's built</h3>
+        <ul>
+          <li>
+            Built on SkiaSharp and licensed under MIT. There's no license key,
+            registration or build-time check, so it works the same in open
+            source, closed source and CI.
+          </li>
+          <li>
+            Safe by default for user uploads. Decompression bombs are rejected
+            from the file header before any pixel memory is allocated, input
+            size is capped, and EXIF metadata, including GPS location, is never
+            written to the output.
+          </li>
+          <li>
+            JPEG and WebP can be decoded straight at a smaller size, which makes
+            thumbnails fast. A 200 px thumbnail from a 12 MP JPEG takes 32.6 ms,
+            the fastest of PixelForge, ImageSharp, NetVips and Magick.NET in my
+            benchmarks. Full-size resizes are slower than ImageSharp and
+            NetVips. The{" "}
+            <a
+              href="https://github.com/GrantTotinov/PixelForge#benchmarks"
+              class={link}>README</a
+            > has all the numbers.
+          </li>
+          <li>
+            Runs on Windows, macOS, and Debian, Ubuntu and Alpine containers, on
+            x64 and arm64, without installing extra system packages. CI tests
+            every one of these.
+          </li>
+        </ul>
+
+        <h3>Installing it</h3>
+        <ul>
+          <li>
+            From{" "}
+            <a href="https://www.nuget.org/packages/PixelForge" class={link}
+              >NuGet</a
+            >: <code>dotnet add package PixelForge --prerelease</code>. The
+            first release is a preview, so the <code>--prerelease</code> flag is needed
+            for now.
+          </li>
+          <li>Needs .NET 8 or newer.</li>
+        </ul>
+      </div>
     </section>
   </Main>
 
