@@ -26,6 +26,9 @@ pnpm-debug.log*
 # pagefind
 public/pagefind
 
+# dev.to copies (node scripts/devto.mjs)
+devto/
+
 # pnpm
 .pnpm-store
 
