@@ -3,6 +3,7 @@ title: "Five minutes on the login page: an expired passkey challenge shouldn't b
 description: "If a user left the login page open for more than five minutes and then signed in with a passkey, ASP.NET Core Identity threw instead of returning SignInResult.Failed. Notes on PR #67539: where the challenge actually lives, why it expires, and where to draw the line between a failed sign-in and a programming error."
 pubDatetime: 2026-10-22T13:00:00Z
 repo: aspnetcore
+pr: 67539
 tags:
   - aspnetcore
   - identity

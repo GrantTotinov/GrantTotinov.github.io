@@ -3,6 +3,7 @@ title: "POST in, DELETE out: antiforgery and HttpMethodOverride in ASP.NET Core"
 description: "UseAntiforgery() validates tokens only for POST, PUT and PATCH. Put form-field HttpMethodOverride in front of it and a cross-site POST becomes a DELETE that is never checked. Notes on PR #66772 and docs PR #37224: why the method list is what it is, a working repro on .NET 10, and what we documented."
 pubDatetime: 2026-10-22T14:00:00Z
 repo: aspnetcore
+pr: 66772
 tags:
   - aspnetcore
   - antiforgery

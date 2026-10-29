@@ -3,6 +3,7 @@ title: "Typed, documented, ignored: forwarding getReferencedVirtualElement in Ti
 description: "The React DragHandle component in Tiptap accepted a getReferencedVirtualElement prop, the docs described it, and it did nothing, because the component never passed it to the plugin. Notes on PR #7832: a three-line fix, why TypeScript couldn't catch it, and the useEffect dependency that comes with it."
 pubDatetime: 2026-10-22T09:00:00Z
 repo: tiptap
+pr: 7832
 tags:
   - tiptap
   - react

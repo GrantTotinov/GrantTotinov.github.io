@@ -1,30 +1,23 @@
 ---
-import type { HTMLAttributes } from "astro/types";
 import Socials from "./Socials.astro";
-import { useTranslations } from "@/i18n";
+import config from "@/config";
 
-type Props = {
-  noMarginTop?: boolean;
-} & HTMLAttributes<"footer">;
-
-const { noMarginTop = false, class: className, ...attrs } = Astro.props;
-
-const t = useTranslations(Astro.currentLocale);
 const currentYear = new Date().getFullYear();
 ---
 
-<footer
-  class:list={["app-layout", { "mt-auto": !noMarginTop }, className]}
-  {...attrs}
->
+<footer class="bg-surface border-border mt-auto border-t">
   <div
-    class="border-border flex flex-col items-center justify-between border-t py-6 sm:flex-row-reverse sm:py-4"
+    class="app-layout flex flex-col gap-4 py-8 sm:flex-row sm:items-center sm:justify-between"
   >
-    <Socials />
-    <div class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row">
-      <span>{t.footer.copyright} &#169; {currentYear}</span>
-      <span class="hidden sm:inline">&nbsp;|&nbsp;</span>
-      <span>{t.footer.allRightsReserved}</span>
+    <div>
+      <p class="font-title">{config.site.author}</p>
+      <p class="text-muted-foreground mt-1 text-sm">
+        {config.site.description}
+      </p>
+      <p class="text-muted-foreground mt-3 text-sm">
+        &#169; {`${currentYear} ${config.site.author}`}
+      </p>
     </div>
+    <Socials class="-ms-2 sm:ms-0" />
   </div>
 </footer>

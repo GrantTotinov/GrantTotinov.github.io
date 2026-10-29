@@ -26,9 +26,12 @@ function reflect(): void {
   root?.classList.toggle("dark", themeValue === DARK);
   document.querySelector("#theme-btn")?.setAttribute("aria-label", themeValue);
 
-  // Fill <meta name="theme-color"> with the computed background colour so
-  // Android's browser chrome matches the page background.
-  const bg = window.getComputedStyle(document.body).backgroundColor;
+  // Fill <meta name="theme-color"> with the header's surface colour so
+  // Android's browser chrome matches the sticky header.
+  const bg = window
+    .getComputedStyle(document.documentElement)
+    .getPropertyValue("--surface")
+    .trim();
   document
     .querySelector("meta[name='theme-color']")
     ?.setAttribute("content", bg);

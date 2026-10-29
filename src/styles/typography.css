@@ -1,42 +1,55 @@
 @plugin "@tailwindcss/typography";
 
 @layer base {
-  /* ===== Override default Tailwind Typography styles ===== */
+  /* ===== Article text, built on Tailwind Typography ===== */
   .app-prose {
-    @apply prose;
+    @apply prose max-w-none text-[1.0625rem] leading-[1.75] sm:text-[1.1875rem];
+    --tw-prose-body: var(--color-foreground);
+    --tw-prose-headings: var(--color-foreground);
+    --tw-prose-links: var(--color-accent);
+    --tw-prose-bold: var(--color-foreground);
+    --tw-prose-counters: var(--color-muted-foreground);
+    --tw-prose-bullets: var(--color-accent);
+    --tw-prose-hr: var(--color-border);
+    --tw-prose-quotes: var(--color-foreground);
+    --tw-prose-quote-borders: var(--color-accent);
+    --tw-prose-captions: var(--color-muted-foreground);
+    --tw-prose-code: var(--color-foreground);
+    --tw-prose-th-borders: var(--color-border);
+    --tw-prose-td-borders: var(--color-border);
 
-    h1,
+    > :first-child {
+      @apply mt-0;
+    }
+
+    > :last-child {
+      @apply mb-0;
+    }
+
     h2,
     h3,
-    h4,
-    th {
-      @apply text-foreground mb-3;
+    h4 {
+      @apply font-title;
+    }
+
+    h2 {
+      @apply mt-[1.9em] mb-[0.6em] text-[1.5em] leading-tight;
     }
 
     h3 {
-      @apply italic;
-    }
-
-    p,
-    strong,
-    ol,
-    ul,
-    figcaption,
-    table,
-    code {
-      @apply text-foreground;
+      @apply mt-[1.6em] mb-[0.5em] text-[1.2em] leading-snug;
     }
 
     a {
-      @apply text-foreground hover:text-accent wrap-break-word decoration-dashed underline-offset-4 focus-visible:no-underline;
+      @apply decoration-accent/35 hover:decoration-accent font-medium wrap-break-word underline-offset-[3px];
+    }
+
+    a.heading-link {
+      @apply text-muted-foreground no-underline;
     }
 
     ul {
       @apply overflow-x-clip;
-    }
-
-    li {
-      @apply marker:text-accent;
     }
 
     hr {
@@ -44,19 +57,15 @@
     }
 
     img {
-      @apply border-border mx-auto border;
+      @apply border-border mx-auto rounded-lg border;
     }
 
     img[role="button"] {
       @apply cursor-zoom-in;
 
       &:focus-visible {
-        @apply outline-2 outline-offset-2 outline-dashed;
+        @apply outline-2 outline-offset-2;
       }
-    }
-
-    figcaption {
-      @apply opacity-75;
     }
 
     table {
@@ -85,38 +94,49 @@
       }
     }
 
+    /* Inline code. Code blocks reset this below. */
     code {
-      @apply bg-muted/75 text-foreground rounded p-1 wrap-break-word before:content-none after:content-none;
-    }
-
-    .astro-code code {
-      @apply flex-[1_0_100%] bg-inherit p-0;
-    }
-
-    blockquote {
-      @apply border-s-accent/80 wrap-break-word opacity-80;
-    }
-
-    details:not(.callout) {
-      @apply text-foreground inline-block cursor-pointer select-none [&_p]:hidden [&_ul]:my-0!;
-    }
-
-    summary {
-      @apply focus-visible:outline-accent focus-visible:no-underline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-dashed;
+      @apply bg-muted rounded-md px-[0.35em] py-[0.15em] text-[0.85em] font-normal wrap-break-word before:content-none after:content-none;
     }
 
     pre {
-      @apply focus-visible:outline-accent focus-visible:border-transparent focus-visible:outline-2 focus-visible:outline-dashed;
+      @apply border-border rounded-lg border text-[0.8125rem] leading-relaxed sm:text-[0.875rem];
+    }
+
+    .astro-code code {
+      @apply flex-[1_0_100%] rounded-none bg-inherit p-0 text-[1em];
+    }
+
+    blockquote {
+      @apply border-s-accent/60 font-normal wrap-break-word not-italic;
+
+      p:first-of-type::before,
+      p:last-of-type::after {
+        content: none;
+      }
+    }
+
+    /* "Table of contents", collapsed by remark-collapse */
+    details:not(.callout) {
+      @apply bg-muted/60 rounded-lg px-4 py-3 [&_a]:no-underline [&_a]:hover:underline [&_li]:my-1 [&_p]:hidden [&_ul]:my-0!;
+    }
+
+    summary {
+      @apply cursor-pointer font-semibold select-none;
+    }
+
+    pre {
+      @apply focus-visible:outline-accent focus-visible:border-transparent focus-visible:outline-2;
     }
   }
 
   /* ===== Code Blocks & Syntax Highlighting ===== */
   .astro-code {
-    @apply outline-border flex border bg-(--shiki-light-bg) text-(--shiki-light) [&_span]:text-(--shiki-light);
+    @apply bg-code! flex text-(--shiki-light) [&_span]:text-(--shiki-light);
   }
 
   html[data-theme="dark"] .astro-code {
-    @apply bg-(--shiki-dark-bg) text-(--shiki-dark) [&_span]:text-(--shiki-dark);
+    @apply text-(--shiki-dark) [&_span]:text-(--shiki-dark);
   }
 
   /* Styles for Shiki transformers */

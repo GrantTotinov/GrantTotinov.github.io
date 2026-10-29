@@ -44,8 +44,6 @@ interface FeaturesConfig {
   dynamicOgImage?: boolean;
   /** Show the /archives page and link it in nav. Defaults to true. */
   showArchives?: boolean;
-  /** Show back button on post detail pages. Defaults to true. */
-  showBackButton?: boolean;
   /** "Edit page" link shown on post detail pages. */
   editPost?:
     | {
@@ -67,10 +65,12 @@ interface SocialLink {
    * e.g. "github" → src/assets/icons/socials/github.svg
    */
   name: string;
+  /** Visible text, e.g. "GitHub" */
+  label: string;
   url: string;
   /**
    * Accessible label for the icon link (aria-label, title attribute).
-   * Auto-generated if omitted: "{site.title} on GitHub", "Send an email to {site.title}", etc.
+   * Auto-generated if omitted: "{site.author} on GitHub", "Send an email to {site.author}", etc.
    * Override when the default wording doesn't fit.
    */
   linkTitle?: string;
@@ -96,8 +96,10 @@ interface AstroPaperConfig {
   site: SiteConfig;
   posts?: PostsConfig;
   features?: FeaturesConfig;
-  /** Social profile links shown in header/footer */
+  /** Social profile links shown in the profile card and footer */
   socials?: SocialLink[];
+  /** Ways to support the author (sponsorship, donations), shown as buttons */
+  support?: SocialLink[];
   /** Share links shown on post detail pages */
   shareLinks?: ShareLink[];
 }
@@ -122,6 +124,7 @@ export interface ResolvedAstroPaperConfig {
   posts: Required<PostsConfig>;
   features: Required<FeaturesConfig>;
   socials: SocialLink[];
+  support: SocialLink[];
   shareLinks: ShareLink[];
 }
 

@@ -3,7 +3,6 @@ import { getRelativeLocaleUrl } from "astro:i18n";
 import "@pagefind/default-ui/css/ui.css";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
-import Breadcrumb from "@/components/Breadcrumb.astro";
 import Main from "@/components/Main.astro";
 import Footer from "@/components/Footer.astro";
 import { getAssetPath } from "@/utils/withBase";
@@ -18,10 +17,6 @@ if (config.features.search !== "pagefind" && notFoundUrl) {
   return Astro.rewrite(notFoundUrl);
 }
 
-const backUrl = config.features.showBackButton
-  ? `${Astro.url.pathname}`
-  : getRelativeLocaleUrl(locale, "");
-
 const pagefindBundlePath = getAssetPath("pagefind/");
 
 const t = useTranslations(locale);
@@ -30,13 +25,11 @@ const t = useTranslations(locale);
 <Layout title={`${t.pages.searchTitle} | ${config.site.title}`}>
   <Header />
 
-  <Breadcrumb />
-
   <Main pageTitle={t.pages.searchTitle} pageDesc={t.pages.searchDesc}>
     <div
       id="pagefind-search"
+      class="card p-4 sm:p-6"
       transition:persist
-      data-backurl={backUrl}
       data-bundle-path={pagefindBundlePath}
     >
     </div>
@@ -83,10 +76,6 @@ const t = useTranslations(locale);
           params.set("q", term); // Update the `q` parameter in the URL
           history.replaceState(history.state, "", "?" + params.toString()); // Push the new URL without reloading
 
-          const backUrl =
-            pageFindSearch?.dataset?.backurl ?? window.location.pathname;
-          sessionStorage.setItem("backUrl", `${backUrl}?${params.toString()}`);
-
           return term;
         },
       });
@@ -126,7 +115,7 @@ const t = useTranslations(locale);
   #pagefind-search {
     --pagefind-ui-font: var(--font-app);
     --pagefind-ui-text: var(--foreground);
-    --pagefind-ui-background: var(--background);
+    --pagefind-ui-background: var(--surface);
     --pagefind-ui-border: var(--border);
     --pagefind-ui-primary: var(--accent);
     --pagefind-ui-tag: var(--background);
