@@ -3,6 +3,7 @@ title: '"If you didn''t request this, you can ignore it": the default Identity e
 description: "Anyone can type any address into a register or forgot-password form, so ASP.NET Core Identity's default emails regularly reach people who never asked for them. Notes on PR #66747: where that text actually ships, a wording problem caught in review, and a test that turned out to be parsing the email."
 pubDatetime: 2026-10-22T10:00:00Z
 repo: aspnetcore
+pr: 66747
 tags:
   - aspnetcore
   - identity

@@ -60,6 +60,19 @@ export default defineConfig({
   },
   fonts: [
     {
+      // Text and headings. Variable weight and width: titles use a wider cut.
+      name: "Mona Sans",
+      cssVariable: "--font-mona-sans",
+      provider: fontProviders.google(),
+      fallbacks: ["sans-serif"],
+      weights: ["200 900"],
+      styles: ["normal", "italic"],
+      stretch: "75% 125%",
+      subsets: ["latin", "latin-ext"],
+      options: { experimental: { variableAxis: { wdth: [["75", "125"]] } } },
+    },
+    {
+      // Code blocks, and the font of the generated OG images.
       name: "Google Sans Code",
       cssVariable: "--font-google-sans-code",
       provider: fontProviders.google(),

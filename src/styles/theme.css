@@ -1,34 +1,48 @@
 /* Register design tokens for Tailwind v4 */
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
   --color-foreground: var(--foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-accent-soft: var(--accent-soft);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
-  --font-app: var(--font-google-sans-code);
+  --color-code: var(--code);
+  --font-app: var(--font-mona-sans);
+  --font-mono: var(--font-google-sans-code);
 }
 
-/* Light theme values */
+/*
+ * Light theme values. The page is a cool grey canvas and every post sits on a
+ * white surface. The accent is the .NET brand violet, used only for links,
+ * merged pull requests and actions.
+ */
 :root,
 [data-theme="light"] {
-  --background: #fdfdfd;
-  --foreground: #282728;
-  --accent: #006cac;
+  --background: #f3f2f8;
+  --surface: #ffffff;
+  --foreground: #1c1a29;
+  --accent: #512bd4;
   --accent-foreground: #ffffff;
-  --muted: #e6e6e6;
-  --muted-foreground: #6b7280;
-  --border: #ece9e9;
+  --accent-soft: #efeafc;
+  --muted: #eeecf5;
+  --muted-foreground: #5d5970;
+  --border: #e3e0ee;
+  --code: #f8f7fc;
 }
 
 /* Dark theme values */
 [data-theme="dark"] {
-  --background: #212737;
-  --foreground: #eaedf3;
-  --accent: #ff6b01;
-  --accent-foreground: #ffffff;
-  --muted: #343f60;
-  --muted-foreground: #afb9ca;
-  --border: #ab4b08;
+  --background: #14131c;
+  --surface: #1c1b27;
+  --foreground: #ebeaf3;
+  --accent: #a995ff;
+  --accent-foreground: #14131c;
+  --accent-soft: #29224a;
+  --muted: #272535;
+  --muted-foreground: #a5a1bb;
+  --border: #2f2d3f;
+  --code: #15141d;
 }

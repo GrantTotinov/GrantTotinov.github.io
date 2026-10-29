@@ -1,31 +1,82 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import IconGitMerge from "@/assets/icons/IconGitMerge.svg";
+import { CONTRIBUTIONS } from "@/data/contributions";
 import { getPostUrl } from "@/utils/getPostPaths";
+import { getReadingTime } from "@/utils/readingTime";
+import { slugifyStr } from "@/utils/slugify";
 import { toTransitionName } from "@/utils/toTransitionName";
 import Datetime from "./Datetime.astro";
+import Tag from "./Tag.astro";
 
 type Props = {
   variant?: "h2" | "h3";
 } & CollectionEntry<"posts">;
 
-const { variant: Heading = "h2", id, data, filePath } = Astro.props;
+const { variant: Heading = "h2", id, data, filePath, body } = Astro.props;
 
-const { title, description, ...props } = data;
+const {
+  title,
+  description,
+  pubDatetime,
+  modDatetime,
+  timezone,
+  tags,
+  repo,
+  pr,
+  featured,
+} = data;
+
+const project = repo && CONTRIBUTIONS[repo];
 ---
 
-<li class="my-6">
-  <a
-    href={getPostUrl(id, filePath, Astro.currentLocale)}
-    class:list={[
-      "text-accent inline-block text-lg font-medium",
-      "decoration-dashed underline-offset-4 hover:underline",
-      "focus-visible:no-underline focus-visible:underline-offset-0",
-    ]}
+<li>
+  <article
+    class="card group hover:border-accent/40 relative p-5 transition-colors sm:p-6"
   >
-    <Heading transition:name={toTransitionName(id)}>
-      {title}
+    <div
+      class="text-muted-foreground flex flex-wrap items-center gap-x-4 gap-y-1 text-sm"
+    >
+      {
+        project && (
+          <a
+            href={`https://github.com/${project.github}${pr ? `/pull/${pr}` : ""}`}
+            class="text-accent relative z-10 inline-flex items-center gap-1.5 font-medium hover:underline"
+          >
+            <IconGitMerge class="size-4 shrink-0" aria-hidden="true" />
+            {project.github}
+            {pr && `#${pr}`}
+          </a>
+        )
+      }
+      <Datetime {pubDatetime} {modDatetime} {timezone} />
+      {
+        featured && (
+          <span class="bg-accent-soft text-accent rounded-full px-2 py-0.5 text-xs font-semibold">
+            Featured
+          </span>
+        )
+      }
+    </div>
+    <Heading
+      transition:name={toTransitionName(id)}
+      class="font-title group-hover:text-accent mt-2 text-xl leading-snug sm:text-2xl"
+    >
+      <a
+        href={getPostUrl(id, filePath, Astro.currentLocale)}
+        class="after:absolute after:inset-0 after:rounded-xl"
+      >
+        {title}
+      </a>
     </Heading>
-  </a>
-  <Datetime {...props} />
-  <p>{description}</p>
+    <ul class="relative z-10 -ms-1.5 mt-3 flex flex-wrap gap-1">
+      {tags.map(tag => <Tag tag={slugifyStr(tag)} tagName={tag} size="sm" />)}
+    </ul>
+    <p class="text-foreground/80 mt-3 line-clamp-3 leading-relaxed">
+      {description}
+    </p>
+    <p class="text-muted-foreground mt-4 text-sm">
+      {getReadingTime(body)} min read
+    </p>
+  </article>
 </li>

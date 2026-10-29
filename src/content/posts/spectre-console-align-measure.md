@@ -3,6 +3,7 @@ title: "Measure twice, render once: why Align.Width didn't shrink a Spectre.Cons
 description: "Spectre.Console lays out widgets in two passes, measure and render. Align respected an explicit Width when rendering but not when measuring, so a Panel around it always stretched to the full console. Notes on my first spectre.console PR, #2101: the layout model, the fix, and two review comments that made it correct."
 pubDatetime: 2026-10-22T11:00:00Z
 repo: spectre-console
+pr: 2101
 tags:
   - dotnet
   - spectre-console

@@ -3,6 +3,7 @@ title: "Three ways to say [Authorize], one way to check it: fixing ASP.NET Core'
 description: "ASP.NET Core routing refuses to run an endpoint whose authorization metadata nothing will enforce. That guard only recognized one of the three kinds of authorization metadata. Notes on PR #67742: where the gap was, a short-circuited endpoint that served 200 without authentication on .NET 10, and the fix."
 pubDatetime: 2026-10-22T15:00:00Z
 repo: aspnetcore
+pr: 67742
 tags:
   - aspnetcore
   - authorization

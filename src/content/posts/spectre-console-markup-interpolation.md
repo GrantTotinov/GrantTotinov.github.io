@@ -3,6 +3,7 @@ title: "List`1[System.Int32] is not a style: escaping interpolated values in Spe
 description: "MarkupInterpolated escaped string arguments but passed every other object through untouched, so anything whose ToString() contained square brackets crashed the markup parser. That includes List<int> and int[]. Notes on spectre.console PR #2118: the fix, the IFormattable trade-off, and what still breaks."
 pubDatetime: 2026-10-22T12:00:00Z
 repo: spectre-console
+pr: 2118
 tags:
   - dotnet
   - spectre-console

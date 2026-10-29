@@ -2,27 +2,22 @@
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Main from "@/components/Main.astro";
-import Breadcrumb from "@/components/Breadcrumb.astro";
 import Footer from "@/components/Footer.astro";
 import ProjectCard from "@/components/ProjectCard.astro";
 import { PROJECTS } from "@/data/projects";
 import config from "@/config";
 
-const prose =
-  "app-prose mt-8 max-w-none [&_h3]:mt-6 [&_h3]:text-lg [&_h3]:font-semibold [&_li]:my-1 [&_ul]:list-disc [&_ul]:ps-6";
-const link = "hover:text-accent underline decoration-dashed underline-offset-4";
+const prose = "app-prose mt-6 [&_h3]:text-lg [&_li]:my-1";
 ---
 
-<Layout title={`Open Source Projects | ${config.site.title}`}>
+<Layout title={`Open source projects | ${config.site.title}`}>
   <Header />
 
-  <Breadcrumb />
-
   <Main
-    pageTitle="Open Source Projects"
+    pageTitle="Open source projects"
     pageDesc="Things I build and maintain myself."
   >
-    <section id="ai-exporter">
+    <section id="ai-exporter" class="card p-5 sm:p-8">
       <ProjectCard project={PROJECTS.aiExporter} headingLevel="h2" />
 
       <div class={prose}>
@@ -84,7 +79,7 @@ const link = "hover:text-accent underline decoration-dashed underline-offset-4";
             <strong>Chrome and Edge:</strong> from the{" "}
             <a
               href="https://chromewebstore.google.com/detail/objkcakdcilfaphifjfcgfamlnnbinjc"
-              class={link}>Chrome Web Store</a
+              >Chrome Web Store</a
             >. Edge installs Chrome extensions after you allow extensions from
             other stores.
           </li>
@@ -92,14 +87,14 @@ const link = "hover:text-accent underline decoration-dashed underline-offset-4";
             <strong>Firefox 140 or newer:</strong> build it from{" "}
             <a
               href="https://github.com/GrantTotinov/AIExporter#from-source-chrome-edge-or-firefox"
-              class={link}>the source</a
+              >the source</a
             >.
           </li>
         </ul>
       </div>
     </section>
 
-    <section id="pixelforge" class="mt-12">
+    <section id="pixelforge" class="card mt-6 p-5 sm:p-8">
       <ProjectCard project={PROJECTS.pixelForge} headingLevel="h2" />
 
       <div class={prose}>
@@ -120,7 +115,7 @@ const link = "hover:text-accent underline decoration-dashed underline-offset-4";
             calls. The{" "}
             <a
               href="https://github.com/GrantTotinov/PixelForge/blob/main/docs/migrating-from-imagesharp.md"
-              class={link}>migration guide</a
+              >migration guide</a
             > has the full mapping.
           </li>
         </ul>
@@ -144,9 +139,8 @@ const link = "hover:text-accent underline decoration-dashed underline-offset-4";
             the fastest of PixelForge, ImageSharp, NetVips and Magick.NET in my
             benchmarks. Full-size resizes are slower than ImageSharp and
             NetVips. The{" "}
-            <a
-              href="https://github.com/GrantTotinov/PixelForge#benchmarks"
-              class={link}>README</a
+            <a href="https://github.com/GrantTotinov/PixelForge#benchmarks"
+              >README</a
             > has all the numbers.
           </li>
           <li>
@@ -160,11 +154,10 @@ const link = "hover:text-accent underline decoration-dashed underline-offset-4";
         <ul>
           <li>
             From{" "}
-            <a href="https://www.nuget.org/packages/PixelForge" class={link}
-              >NuGet</a
-            >: <code>dotnet add package PixelForge --prerelease</code>. The
-            first release is a preview, so the <code>--prerelease</code> flag is needed
-            for now.
+            <a href="https://www.nuget.org/packages/PixelForge">NuGet</a>: <code
+              >dotnet add package PixelForge --prerelease</code
+            >. The first release is a preview, so the <code>--prerelease</code> flag
+            is needed for now.
           </li>
           <li>Needs .NET 8 or newer.</li>
         </ul>

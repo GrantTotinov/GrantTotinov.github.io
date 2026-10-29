@@ -26,11 +26,11 @@ const t = useTranslations(Astro.currentLocale);
       target="_blank"
       rel="noopener noreferrer"
       class:list={[
-        "hover:text-accent text-muted-foreground flex justify-baseline gap-1.5",
+        "hover:text-accent text-muted-foreground flex items-center gap-1.5 text-sm",
         className,
       ]}
     >
-      <IconEdit class="inline-block" />
+      <IconEdit class="size-4" aria-hidden="true" />
       <span>{t.post.editPage}</span>
     </a>
   )

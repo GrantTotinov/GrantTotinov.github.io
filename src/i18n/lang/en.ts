@@ -7,7 +7,7 @@ export default {
     tags: "Tags",
     about: "About",
     contributions: "Contributions",
-    projects: "Open Source",
+    projects: "Open source",
     archives: "Archives",
     search: "Search",
   },
@@ -21,8 +21,8 @@ export default {
     backToTop: "Back to top",
     goBack: "Go back",
     editPage: "Edit page",
-    previousPost: "Previous Post",
-    nextPost: "Next Post",
+    previousPost: "Previous post",
+    nextPost: "Next post",
   },
   pagination: {
     prev: "Prev",
@@ -32,8 +32,8 @@ export default {
   home: {
     socialLinks: "Social Links",
     featured: "Featured",
-    recentPosts: "Recent Posts",
-    allPosts: "All Posts",
+    recentPosts: "Latest posts",
+    allPosts: "All posts",
   },
   footer: {
     copyright: "Copyright",
