@@ -17,6 +17,7 @@ import {
   transformerNotationWordHighlight,
 } from "@shikijs/transformers";
 import { transformerFileName } from "./src/utils/transformers/fileName";
+import { rehypeScrollTables } from "./src/utils/rehypeScrollTables";
 import config from "./astro-paper.config";
 
 export default defineConfig({
@@ -41,7 +42,7 @@ export default defineConfig({
         remarkToc,
         [remarkCollapse, { test: "Table of contents" }],
       ],
-      rehypePlugins: [rehypeCallouts],
+      rehypePlugins: [rehypeCallouts, rehypeScrollTables],
     }),
     shikiConfig: {
       themes: { light: "min-light", dark: "night-owl" },

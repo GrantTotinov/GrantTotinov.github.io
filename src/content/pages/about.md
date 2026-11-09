@@ -5,7 +5,7 @@ description: "Who I am and what this blog is for."
 
 I'm Grant Totinov, a software engineer from Bulgaria with a Master's degree in Computer Engineering. I'm a member of the [.NET Foundation](https://dotnetfoundation.org) and a Microsoft Q&A Community Champion, and I spend a good part of my free time contributing to open source.
 
-I also build two open source projects of my own. [AI Exporter](/projects/#ai-exporter) is a free browser extension that saves AI chats from ChatGPT, Claude, Gemini and twelve other sites as PDF, Word, Markdown and more. [PixelForge](/projects/#pixelforge) is an MIT image processing library for .NET, published on [NuGet](https://www.nuget.org/packages/PixelForge).
+I also build three open source projects of my own. [AI Exporter](/projects/#ai-exporter) is a free browser extension that saves AI chats from ChatGPT, Claude, Gemini and twelve other sites as PDF, Word, Markdown and more. [PixelForge](/projects/#pixelforge) is an MIT image processing library for .NET, published on [NuGet](https://www.nuget.org/packages/PixelForge). [UploadGuard](/projects/#uploadguard) is an MIT library for secure file uploads in ASP.NET Core, also on [NuGet](https://www.nuget.org/packages/UploadGuard); [this post](/posts/uploadguard-secure-file-uploads/) explains what it checks.
 
 Merged so far:
 

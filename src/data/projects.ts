@@ -1,5 +1,6 @@
 import aiExporterIcon from "@/assets/images/aiexporter-icon.png";
 import pixelForgeIcon from "@/assets/images/pixelforge-icon.png";
+import uploadGuardIcon from "@/assets/images/uploadguard-icon.png";
 
 /** Projects I build and maintain myself, shown on the home and projects pages. */
 export const PROJECTS = {
@@ -31,6 +32,20 @@ export const PROJECTS = {
         label: "Source on GitHub",
         href: "https://github.com/GrantTotinov/PixelForge",
       },
+    ],
+  },
+  uploadGuard: {
+    name: "UploadGuard",
+    icon: uploadGuardIcon,
+    description:
+      "MIT secure file uploads for ASP.NET Core. It detects the real file type from the bytes, checks it against an allow-list, and looks inside for zip bombs, macros, PDF JavaScript and scripts hidden in SVG files and images, with optional ClamAV scanning.",
+    links: [
+      { label: "NuGet", href: "https://www.nuget.org/packages/UploadGuard" },
+      {
+        label: "Source on GitHub",
+        href: "https://github.com/GrantTotinov/UploadGuard",
+      },
+      { label: "Write-up", href: "/posts/uploadguard-secure-file-uploads/" },
     ],
   },
 };

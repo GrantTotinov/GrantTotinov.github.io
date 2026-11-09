@@ -163,6 +163,76 @@ const prose = "app-prose mt-6 [&_h3]:text-lg [&_li]:my-1";
         </ul>
       </div>
     </section>
+
+    <section id="uploadguard" class="card mt-6 p-5 sm:p-8">
+      <ProjectCard project={PROJECTS.uploadGuard} headingLevel="h2" />
+
+      <div class={prose}>
+        <h3>What it does</h3>
+        <ul>
+          <li>
+            Detects 47 file types from their bytes alone, then checks that the
+            extension and the Content-Type belong to the type it found.
+          </li>
+          <li>
+            Named allow-list policies with size and archive limits, checked when
+            the app starts. A Minimal API filter and an MVC attribute reject bad
+            files with a 400 validation problem before your handler runs.
+          </li>
+          <li>
+            Looks inside the file: zip bombs and zip slip, macros in Office and
+            OpenDocument files, JavaScript and launch actions in PDFs (also
+            inside compressed object streams), scripts in SVG, and HTML or PHP
+            hidden in images.
+          </li>
+          <li>
+            Optional ClamAV scanning with UploadGuard.ClamAV, and image
+            re-encoding with PixelForge in UploadGuard.PixelForge, which keeps
+            the pixels and drops everything else.
+          </li>
+        </ul>
+
+        <h3>How it's built</h3>
+        <ul>
+          <li>
+            Files are read in 64 KB chunks and never loaded whole. ZIP limits
+            come from the central directory, so nothing is unpacked to check
+            them.
+          </li>
+          <li>
+            It fails closed: when a scanner errors or times out, the upload is
+            rejected.
+          </li>
+          <li>
+            Accepted files get random 128-bit names, and the app refuses to
+            start if the storage folder is inside the web root.
+          </li>
+          <li>
+            Of 14 test files, from a normal JPEG to a ZIP bomb, it handles all
+            14 correctly. Mime-Detective and File.TypeChecker, which match
+            signatures, get 4 and 6 of them right. The{" "}
+            <a href="/posts/uploadguard-secure-file-uploads/">write-up</a> has the
+            comparison and how each check works.
+          </li>
+          <li>
+            Licensed under MIT, with no dependencies beyond ASP.NET Core in the
+            core package.
+          </li>
+        </ul>
+
+        <h3>Installing it</h3>
+        <ul>
+          <li>
+            From{" "}
+            <a href="https://www.nuget.org/packages/UploadGuard">NuGet</a>:
+            <code>dotnet add package UploadGuard --prerelease</code>. The ClamAV
+            and PixelForge integrations are separate packages,
+            UploadGuard.ClamAV and UploadGuard.PixelForge.
+          </li>
+          <li>Needs .NET 10 or newer.</li>
+        </ul>
+      </div>
+    </section>
   </Main>
 
   <Footer />
