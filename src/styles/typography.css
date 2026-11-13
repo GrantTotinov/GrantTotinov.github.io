@@ -68,6 +68,11 @@
       }
     }
 
+    /* Added around every table by rehypeScrollTables */
+    .table-scroll {
+      @apply my-[2em] overflow-x-auto [&>table]:my-0;
+    }
+
     table {
       th,
       td {

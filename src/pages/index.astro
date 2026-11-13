@@ -79,10 +79,7 @@ const sidebarLink =
               Object.values(PROJECTS).map(({ name, icon, description }) => (
                 <li>
                   <a
-                    href={getRelativeLocaleUrl(
-                      locale,
-                      `projects/#${slugifyStr(name)}`
-                    )}
+                    href={`${getRelativeLocaleUrl(locale, "projects")}#${slugifyStr(name)}`}
                     class={sidebarLink}
                   >
                     <Image
