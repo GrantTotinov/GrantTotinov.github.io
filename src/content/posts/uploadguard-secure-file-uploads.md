@@ -1,7 +1,7 @@
 ---
 title: "JPEG header, PHP payload: why I built UploadGuard for ASP.NET Core uploads"
 description: "Most upload code checks the extension and maybe the first few bytes. A JPEG with PHP appended, a renamed macro document and a ZIP bomb all get past that. Notes on UploadGuard, my MIT library for ASP.NET Core: the nine checks it runs, how it looks inside archives and PDFs without unpacking them, and what it still doesn't cover."
-pubDatetime: 2026-11-09T16:00:00Z
+pubDatetime: 2026-11-13T22:30:00Z
 tags:
   - aspnetcore
   - security
