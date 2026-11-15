@@ -1,5 +1,6 @@
 import aiExporterIcon from "@/assets/images/aiexporter-icon.png";
 import pixelForgeIcon from "@/assets/images/pixelforge-icon.png";
+import plainSightIcon from "@/assets/images/plainsight-icon.png";
 import uploadGuardIcon from "@/assets/images/uploadguard-icon.png";
 
 /** Projects I build and maintain myself, shown on the home and projects pages. */
@@ -18,6 +19,22 @@ export const PROJECTS = {
       {
         label: "Source on GitHub",
         href: "https://github.com/GrantTotinov/AIExporter",
+      },
+    ],
+  },
+  plainSight: {
+    name: "PlainSight",
+    icon: plainSightIcon,
+    description:
+      "A free, open source browser extension for Chrome, Edge and Firefox that removes AI Overviews and AI Mode from Google Search, so the results start with real websites again. No tracking and no analytics.",
+    links: [
+      {
+        label: "Download",
+        href: "https://github.com/GrantTotinov/PlainSight/releases/latest",
+      },
+      {
+        label: "Source on GitHub",
+        href: "https://github.com/GrantTotinov/PlainSight",
       },
     ],
   },
