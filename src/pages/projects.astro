@@ -94,6 +94,80 @@ const prose = "app-prose mt-6 [&_h3]:text-lg [&_li]:my-1";
       </div>
     </section>
 
+    <section id="plainsight" class="card mt-6 p-5 sm:p-8">
+      <ProjectCard project={PROJECTS.plainSight} headingLevel="h2" />
+
+      <div class={prose}>
+        <h3>What it does</h3>
+        <ul>
+          <li>
+            Hides the AI Overview and the AI Mode buttons and tabs on Google
+            Search, on the results page and on the Google homepage. The rest of
+            the page stays as it is.
+          </li>
+          <li>
+            Web only mode opens every search in Google's own Web filter, which
+            shows links only. Because the filter runs on Google's side, it keeps
+            working when Google changes its page layout.
+          </li>
+          <li>
+            Optional: hide "People also ask", whose answers Google now writes
+            with AI, and send AI Mode back to regular results.
+          </li>
+          <li>
+            Want the AI answer once? Show it on that page with one click, or
+            pause a tab with Alt+Shift+H. Works on every Google domain, and the
+            interface is in 19 languages.
+          </li>
+        </ul>
+
+        <h3>How it's built</h3>
+        <ul>
+          <li>
+            Web only uses <code>declarativeNetRequest</code> to add the Web filter
+            (<code>udm=14</code>) to plain searches before the page loads. A
+            search where you already picked a tab, such as Images or News, is
+            left alone, and your default search engine doesn't change.
+          </li>
+          <li>
+            Hide AI injects CSS before the page renders, so nothing flashes, and
+            finds AI blocks in five independent ways: known selectors, the
+            heading text in 19 languages, the AI Mode labels, accessibility
+            labels and AI Mode links. Every match goes through the same safety
+            check, so a hidden block never contains a regular search result.
+          </li>
+          <li>
+            Fixes for Google page changes arrive once a day as a data-only
+            selector file from GitHub, without waiting for a store review. The
+            request carries no cookies or identifiers, and you can turn it off.
+          </li>
+          <li>
+            No analytics, no tracking and no remote code. Built with WXT and
+            Preact, licensed under MIT.
+          </li>
+          <li>
+            The AI Mode button in Chrome's address bar and new tab page is part
+            of the browser, not of the page, so no extension can remove it.
+          </li>
+        </ul>
+
+        <h3>Installing it</h3>
+        <ul>
+          <li>
+            The Chrome Web Store, Edge Add-ons and Firefox Add-ons listings are
+            on their way.
+          </li>
+          <li>
+            Until then, builds for Chrome, Edge and Firefox are on the{" "}
+            <a href="https://github.com/GrantTotinov/PlainSight/releases/latest"
+              >GitHub releases page</a
+            >. In Chrome or Edge, unzip the build, turn on developer mode on the
+            extensions page and load the folder as an unpacked extension.
+          </li>
+        </ul>
+      </div>
+    </section>
+
     <section id="pixelforge" class="card mt-6 p-5 sm:p-8">
       <ProjectCard project={PROJECTS.pixelForge} headingLevel="h2" />
 
@@ -154,10 +228,8 @@ const prose = "app-prose mt-6 [&_h3]:text-lg [&_li]:my-1";
         <ul>
           <li>
             From{" "}
-            <a href="https://www.nuget.org/packages/PixelForge">NuGet</a>: <code
-              >dotnet add package PixelForge --prerelease</code
-            >. The first release is a preview, so the <code>--prerelease</code> flag
-            is needed for now.
+            <a href="https://www.nuget.org/packages/PixelForge">NuGet</a>:
+            <code>dotnet add package PixelForge</code>.
           </li>
           <li>Needs .NET 8 or newer.</li>
         </ul>
